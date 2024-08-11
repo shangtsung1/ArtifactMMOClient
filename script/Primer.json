@@ -8,8 +8,7 @@
   {
     "name":"Start",
     "type":"primer",
-    "pre_transitions":[],
-    "post_transitions":[
+    "pre_transitions":[
       {
         "conditions":["accountNameFrumpy5"],
         "targetState": "Miner"
@@ -29,7 +28,7 @@
       {
         "conditions":["accountNameFrumpy1"],
         "targetState": "Fighter"
-      }
-    ]
+      }],
+    "post_transitions":[]
   }
 ]
