@@ -1,0 +1,58 @@
+[
+  {
+    "name": "MineCopperTillFull",
+    "type": "action",
+    "pre_transitions": [
+      {
+        "conditions": [
+          "invFull"
+        ],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions": [],
+    "action": "MineCopper"
+  },
+  {
+    "name": "MineIronTillFull",
+    "type": "action",
+    "pre_transitions": [
+      {
+        "conditions": [
+          "invFull"
+        ],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions": [],
+    "action": "MineIron"
+  },
+  {
+    "name": "MineCoalTillFull",
+    "type": "action",
+    "pre_transitions": [
+      {
+        "conditions": [
+          "invFull"
+        ],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions": [],
+    "action": "MineCoal"
+  },
+  {
+    "name": "MineGoldTillFull",
+    "type": "action",
+    "pre_transitions": [
+      {
+        "conditions": [
+          "invFull"
+        ],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions": [],
+    "action": "MineGold"
+  }
+]

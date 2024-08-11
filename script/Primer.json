@@ -1,0 +1,19 @@
+//pre_transitions always called first
+//pretransitions returning true will exit the state before any action
+//or post transition occurs.
+//if action!=null itll be executed.
+//post_transitions will now take place.
+
+[
+  {
+    "name":"Start",
+    "type":"primer",
+    "pre_transitions":[],
+    "post_transitions":[
+      {
+        "conditions":["accountNameFrumpy5"],
+        "targetState": "Miner"
+      }
+    ]
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "name":"Miner",
+    "type":"primer",
+    "pre_transitions":[
+      {
+        "conditions":["invFull"],
+        "targetState": "bankAll"
+      }
+    ],
+    "post_transitions":[
+      {
+        "conditions":["miningGreaterThanEqual0","freeInvSpace","bankNotContains1000copper_ore"],
+        "targetState":"MineCopperTillFull"
+      },
+      {
+        "conditions":["miningGreaterThanEqual20","freeInvSpace","bankNotContains1000coal"],
+        "targetState":"MineCoalTillFull"
+      },
+      {
+        "conditions":["miningGreaterThanEqual10","freeInvSpace","bankNotContains1000iron_ore"],
+        "targetState":"MineIronTillFull"
+      },
+      {
+        "conditions":["miningGreaterThanEqual30","freeInvSpace","bankNotContains1000gold_ore"],
+        "targetState":"MineGoldTillFull"
+      }
+    ]
+  }
+]

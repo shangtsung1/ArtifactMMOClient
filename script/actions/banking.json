@@ -1,0 +1,14 @@
+[
+  {
+    "name":"bankAll",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invEmpty"],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions":[],
+    "action":"bankAny"//better to repeatably call this then to use bankAll
+  }
+]
