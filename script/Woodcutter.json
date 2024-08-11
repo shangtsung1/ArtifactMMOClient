@@ -1,0 +1,30 @@
+[
+  {
+    "name":"Woodcutter",
+    "type":"primer",
+    "pre_transitions":[
+      {
+        "conditions":["invFull"],
+        "targetState": "bankAll"
+      }
+    ],
+    "post_transitions":[
+      {
+        "conditions":["woodcuttingGreaterThanEqual0","freeInvSpace","bankNotContains1000ash_wood"],
+        "targetState":"CutAshTillFull"
+      },
+      {
+        "conditions":["woodcuttingGreaterThanEqual20","freeInvSpace","bankNotContains1000spruce_wood"],
+        "targetState":"CutSpruceTillFull"
+      },
+      {
+        "conditions":["woodcuttingGreaterThanEqual10","freeInvSpace","bankNotContains1000birch_wood"],
+        "targetState":"CutBirchTillFull"
+      },
+      {
+        "conditions":["woodcuttingGreaterThanEqual30","freeInvSpace","bankNotContains1000dead_wood"],
+        "targetState":"CutDeadTreeTillFull"
+      }
+    ]
+  }
+]

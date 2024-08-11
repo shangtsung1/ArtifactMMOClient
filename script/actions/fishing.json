@@ -1,0 +1,58 @@
+[
+  {
+    "name": "FishGudgeonTillFull",
+    "type": "action",
+    "pre_transitions": [
+      {
+        "conditions": [
+          "invFull"
+        ],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions": [],
+    "action": "FishGudgeon"
+  },
+  {
+    "name": "FishShrimpTillFull",
+    "type": "action",
+    "pre_transitions": [
+      {
+        "conditions": [
+          "invFull"
+        ],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions": [],
+    "action": "FishShrimp"
+  },
+  {
+    "name": "FishTroutTillFull",
+    "type": "action",
+    "pre_transitions": [
+      {
+        "conditions": [
+          "invFull"
+        ],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions": [],
+    "action": "FishTrout"
+  },
+  {
+    "name": "FishBassTillFull",
+    "type": "action",
+    "pre_transitions": [
+      {
+        "conditions": [
+          "invFull"
+        ],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions": [],
+    "action": "FishBass"
+  }
+]

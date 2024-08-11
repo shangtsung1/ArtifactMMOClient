@@ -1,0 +1,13 @@
+[
+  {
+    "name":"Crafter",
+    "type":"primer",
+    "pre_transitions":[
+      {
+        "conditions":["invFull"],
+        "targetState": "bankAll"
+      }
+    ],
+    "post_transitions":[]
+  }
+]

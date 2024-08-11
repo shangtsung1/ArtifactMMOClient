@@ -145,6 +145,10 @@ public class StateMachine {
             return charWrapper.getCharacter().getName().equals(accName);
         }
         switch(condition){
+            case "true":
+                return true;
+            case "false":
+                return false;
             case "invFull":
                 return charWrapper.getClient().countInventory(charWrapper.getCharacter()) >= cs.getInventoryMaxItems();
             case "invEmpty":
@@ -229,6 +233,30 @@ public class StateMachine {
                 break;
             case "MineCoal":
                 charWrapper.getClient().gather(charWrapper.getCharacter(), Data.LOC_COAL);
+                break;
+            case "FishGudgeon":
+                charWrapper.getClient().gather(charWrapper.getCharacter(), Data.LOC_GUDGEON);
+                break;
+            case "FishShrimp":
+                charWrapper.getClient().gather(charWrapper.getCharacter(), Data.LOC_SHRIMP);
+                break;
+            case "FishTrout":
+                charWrapper.getClient().gather(charWrapper.getCharacter(), Data.LOC_TROUT);
+                break;
+            case "FishBass":
+                charWrapper.getClient().gather(charWrapper.getCharacter(), Data.LOC_BASS);
+                break;
+            case "CutAsh":
+                charWrapper.getClient().gather(charWrapper.getCharacter(), Data.LOC_ASH);
+                break;
+            case "CutSpruce":
+                charWrapper.getClient().gather(charWrapper.getCharacter(), Data.LOC_SPRUCE);
+                break;
+            case "CutBirch":
+                charWrapper.getClient().gather(charWrapper.getCharacter(), Data.LOC_BIRCH);
+                break;
+            case "CutDeadTree":
+                charWrapper.getClient().gather(charWrapper.getCharacter(), Data.LOC_DEAD_TREE);
                 break;
             default:
                 System.out.println("[StateMachine] UnknownAction "+action);

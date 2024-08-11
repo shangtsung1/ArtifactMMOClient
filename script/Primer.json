@@ -13,6 +13,22 @@
       {
         "conditions":["accountNameFrumpy5"],
         "targetState": "Miner"
+      },
+      {
+        "conditions":["accountNameFrumpy4"],
+        "targetState": "Fisher"
+      },
+      {
+        "conditions":["accountNameFrumpy3"],
+        "targetState": "Woodcutter"
+      },
+      {
+        "conditions":["accountNameFrumpy2"],
+        "targetState": "Crafter"
+      },
+      {
+        "conditions":["accountNameFrumpy1"],
+        "targetState": "Fighter"
       }
     ]
   }

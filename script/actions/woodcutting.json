@@ -1,0 +1,58 @@
+[
+  {
+    "name": "CutAshTillFull",
+    "type": "action",
+    "pre_transitions": [
+      {
+        "conditions": [
+          "invFull"
+        ],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions": [],
+    "action": "CutAsh"
+  },
+  {
+    "name": "CutSpruceTillFull",
+    "type": "action",
+    "pre_transitions": [
+      {
+        "conditions": [
+          "invFull"
+        ],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions": [],
+    "action": "CutSpruce"
+  },
+  {
+    "name": "CutBirchTillFull",
+    "type": "action",
+    "pre_transitions": [
+      {
+        "conditions": [
+          "invFull"
+        ],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions": [],
+    "action": "CutBirch"
+  },
+  {
+    "name": "CutDeadTreeTillFull",
+    "type": "action",
+    "pre_transitions": [
+      {
+        "conditions": [
+          "invFull"
+        ],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions": [],
+    "action": "CutDeadTree"
+  }
+]
