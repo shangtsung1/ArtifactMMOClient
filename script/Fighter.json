@@ -10,8 +10,24 @@
     ],
     "post_transitions":[
       {
-        "conditions":["combatGreaterThanEqual0","freeInvSpace"],
+        "conditions":["combatGreaterThanEqual0","freeInvSpace","bankOrInvNotContains1000raw_chicken","bankOrInvNotContains1000egg","bankOrInvNotContains1000feather"],
         "targetState":"attackChickens"
+      },
+      {
+        "conditions":["combatGreaterThanEqual10","freeInvSpace","bankOrInvNotContains100yellow_slimeball"],
+        "targetState":"attackYellowSlime"
+      },
+      {
+        "conditions":["combatGreaterThanEqual10","freeInvSpace","bankOrInvNotContains100green_slimeball"],
+        "targetState":"attackGreenSlime"
+      },
+      {
+        "conditions":["combatGreaterThanEqual15","freeInvSpace","bankOrInvNotContains100red_slimeball"],
+        "targetState":"attackRedSlime"
+      },
+      {
+        "conditions":["combatGreaterThanEqual15","freeInvSpace","bankOrInvNotContains100blue_slimeball"],
+        "targetState":"attackBlueSlime"
       }
     ]
   }

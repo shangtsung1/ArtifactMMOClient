@@ -87,11 +87,11 @@
     "pre_transitions":[
       {
         "conditions": ["bankContains1000steel"],
-        "targetState": "Miner"
+        "targetState": "Start"
       },
       {
         "conditions": ["bankNotContains2iron_ore","bankNotContains4coal"],
-        "targetState": "Miner"
+        "targetState": "Start"
       }
     ],
     "post_transitions":[
@@ -123,11 +123,11 @@
     "pre_transitions":[
       {
         "conditions": ["bankContains1000iron"],
-        "targetState": "Miner"
+        "targetState": "Start"
       },
       {
         "conditions": ["bankNotContains6iron_ore"],
-        "targetState": "Miner"
+        "targetState": "Start"
       }
     ],
     "post_transitions":[
@@ -151,11 +151,11 @@
     "pre_transitions":[
       {
         "conditions": ["bankContains1000gold"],
-        "targetState": "Miner"
+        "targetState": "Start"
       },
       {
         "conditions": ["bankNotContains6gold_ore"],
-        "targetState": "Miner"
+        "targetState": "Start"
       }
     ],
     "post_transitions":[
@@ -179,11 +179,11 @@
     "pre_transitions":[
       {
         "conditions": ["bankContains1000copper"],
-        "targetState": "Miner"
+        "targetState": "Start"
       },
       {
         "conditions": ["bankNotContains6copper_ore"],
-        "targetState": "Miner"
+        "targetState": "Start"
       }
     ],
     "post_transitions":[
@@ -208,7 +208,7 @@
     "pre_transitions":[
       {
         "conditions":["bankNotContains2iron_ore"],
-        "targetState": "Miner"
+        "targetState": "Start"
       },
       {
         "conditions":["invContains2iron_ore"],
@@ -228,7 +228,7 @@
     "pre_transitions":[
       {
         "conditions":["bankNotContains4coal"],
-        "targetState": "Miner"
+        "targetState": "Start"
       },
       {
         "conditions":["invContains4coal"],
@@ -248,7 +248,7 @@
     "pre_transitions":[
       {
         "conditions":["bankNotContains6gold_ore"],
-        "targetState": "Miner"
+        "targetState": "Start"
       },
       {
         "conditions":["invFull"],
@@ -264,7 +264,7 @@
     "pre_transitions":[
       {
         "conditions":["bankNotContains6iron_ore"],
-        "targetState": "Miner"
+        "targetState": "Start"
       },
       {
         "conditions":["invFull"],
@@ -280,7 +280,7 @@
     "pre_transitions":[
       {
         "conditions":["bankNotContains6copper_ore"],
-        "targetState": "Miner"
+        "targetState": "Start"
       },
       {
         "conditions":["invFull"],

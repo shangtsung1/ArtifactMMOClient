@@ -199,7 +199,7 @@ public class StateMachine {
             return equipped(condition.substring(8).toLowerCase(), cs, client);
         }else if(condition.startsWith("!equipped")){
             boolean notEquipped = !equipped(condition.substring(9).toLowerCase(), cs, client);
-            System.out.println(notEquipped + " is notEquipped");
+           // System.out.println(notEquipped + " is notEquipped");
             return notEquipped;
         }
         switch (condition) {
@@ -208,13 +208,12 @@ public class StateMachine {
             case "false":
                 return false;
             case "invFull":
-                return charWrapper.getClient().countInventory(charWrapper.getCharacter()) >= cs.getInventoryMaxItems();
+            case "!freeInvSpace":
+                return charWrapper.getClient().countInventory(charWrapper.getCharacter()) >= 100;
             case "invEmpty":
                 return charWrapper.getClient().countInventory(charWrapper.getCharacter()) == 0;
             case "freeInvSpace":
-                return charWrapper.getClient().countInventory(charWrapper.getCharacter()) < cs.getInventoryMaxItems()-10;
-            case "!freeInvSpace":
-                return charWrapper.getClient().countInventory(charWrapper.getCharacter()) >= cs.getInventoryMaxItems()-10;
+                return charWrapper.getClient().countInventory(charWrapper.getCharacter()) < 100;
         }
         System.out.println("[StateMachine] UnknownCondition " + condition);
         return false;
@@ -261,7 +260,7 @@ public class StateMachine {
             int quantity = Integer.parseInt(matcher.group(1));
             String itemName = matcher.group(2);
             boolean contains = client.invContains(cs, itemName, quantity);
-            System.out.println("Does inv contain "+itemName+" "+quantity + "  "+contains);
+            //System.out.println("Does inv contain "+itemName+" "+quantity + "  "+contains);
             return prefix.equals("invNotContains") ? !contains : contains;
         } else {
             System.out.println("[StateMachine] Bad Condition: " + condition);
@@ -373,7 +372,7 @@ public class StateMachine {
             return;
         }
         else if(action.startsWith("equip")){
-            System.out.println("Equip "+action.substring(5) + " " + args);
+            //System.out.println("Equip "+action.substring(5) + " " + args);
             charWrapper.getClient().equip(charWrapper.getCharacter(),action.substring(5),args);
             return;
         }
@@ -456,7 +455,9 @@ public class StateMachine {
             case "attackGreenSlime":
                 charWrapper.getClient().attack(charWrapper.getCharacter(), Data.LOC_GREEN_SLIME);
                 break;
-
+            case "attackRedSlime":
+                charWrapper.getClient().attack(charWrapper.getCharacter(), Data.LOC_RED_SLIME);
+                break;
             default:
                 System.out.println("[StateMachine] UnknownAction " + action);
                 break;

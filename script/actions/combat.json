@@ -10,5 +10,53 @@
     ],
     "post_transitions":[],
     "action":"attackChickens"
+  },
+  {
+    "name":"attackRedSlime",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invFull"],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions":[],
+    "action":"attackRedSlime"
+  },
+  {
+    "name":"attackBlueSlime",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invFull"],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions":[],
+    "action":"attackBlueSlime"
+  },
+  {
+    "name":"attackGreenSlime",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invFull"],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions":[],
+    "action":"attackGreenSlime"
+  },
+  {
+    "name":"attackYellowSlime",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invFull"],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions":[],
+    "action":"attackYellowSlime"
   }
 ]

@@ -10,7 +10,7 @@ public class Main {
             new Thread(new Runnable() {
                 public void run() {
                     CharWrapper cw = new CharWrapper(SS, client);
-                    StateMachine sm = new StateMachine("./script/", cw,SS.equals("Frumpy2"));
+                    StateMachine sm = new StateMachine("./script/", cw,SS.equals("Frumpy3"));
                     System.out.println("Loaded StateMachine " + sm.size() + " States.");
                     while (true) {
                         try {

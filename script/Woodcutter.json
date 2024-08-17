@@ -18,6 +18,10 @@
         "conditions": ["invContains1ash_plank"],
         "targetState": "bankAll"
       },
+      {
+        "conditions":["woodcuttingGreaterThanEqual0","freeInvSpace","bankContains1000ash_wood","bankNotContains1000ash_plank"],
+        "targetState":"PlankAshTill1000"
+      },
       //spruce
       {
         "conditions":["woodcuttingGreaterThanEqual10","freeInvSpace","bankNotContains1000spruce_wood"],
@@ -64,5 +68,66 @@
         "targetState":"CutDeadTreeTillFull"
       }
     ]
+  },
+  //plankseq
+  {
+    "name":"PlankAshTill1000",
+    "type":"transition",
+    "pre_transitions":[
+      {
+        "conditions": ["bankContains1000ash_plank"],
+        "targetState": "Start"
+      },
+      {
+        "conditions": ["bankNotContains6ash_wood"],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions":[
+      {
+        "conditions": ["invContains6ash_wood"],
+        "targetState": "plankAsh"
+      },
+      {
+        "conditions": ["invNotContains6ash_wood","invFull"],
+        "targetState": "bankAll"
+      },
+      {
+        "conditions": ["invNotContains6ash_wood","bankContains6ash_wood"],
+        "targetState": "withdrawMaxAshWood"
+      }
+    ]
+  },
+  //make plank
+  {
+    "name":"plankAsh",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions": ["invNotContains6ash_wood"],
+        "targetState": "PlankAshTill1000"
+      }
+    ],
+    "post_transitions":[
+    ],
+    "action": "make1ash_plank",
+    "args": "woodcutting"
+  },
+  //withdraw
+  {
+    "name":"withdrawMaxAshWood",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["bankNotContains6ash_wood"],
+        "targetState": "Start"
+      },
+      {
+        "conditions":["invFull"],
+        "targetState": "PlankAshTill1000"
+      }
+    ],
+    "post_transitions":[],
+    "action": "withdrawMaxash_wood"
   }
 ]
