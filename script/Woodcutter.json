@@ -9,20 +9,58 @@
       }
     ],
     "post_transitions":[
+      //ash
       {
         "conditions":["woodcuttingGreaterThanEqual0","freeInvSpace","bankNotContains1000ash_wood"],
         "targetState":"CutAshTillFull"
       },
       {
-        "conditions":["woodcuttingGreaterThanEqual20","freeInvSpace","bankNotContains1000spruce_wood"],
+        "conditions": ["invContains1ash_plank"],
+        "targetState": "bankAll"
+      },
+      //spruce
+      {
+        "conditions":["woodcuttingGreaterThanEqual10","freeInvSpace","bankNotContains1000spruce_wood"],
         "targetState":"CutSpruceTillFull"
       },
       {
-        "conditions":["woodcuttingGreaterThanEqual10","freeInvSpace","bankNotContains1000birch_wood"],
+        "conditions": ["invContains1spruce_plank"],
+        "targetState": "bankAll"
+      },
+      //birch
+      {
+        "conditions":["woodcuttingGreaterThanEqual20","freeInvSpace","bankNotContains1000birch_wood"],
         "targetState":"CutBirchTillFull"
       },
       {
+        "conditions": ["invContains1hardwood_plank"],
+        "targetState": "bankAll"
+      },
+      //dead
+      {
         "conditions":["woodcuttingGreaterThanEqual30","freeInvSpace","bankNotContains1000dead_wood"],
+        "targetState":"CutDeadTreeTillFull"
+      },
+      {
+        "conditions": ["invContains1deadwood_plank"],
+        "targetState": "bankAll"
+      },
+
+      //other
+      {
+        "conditions":["woodcuttingGreaterThanEqual0","freeInvSpace","bankNotContains10000ash_wood"],
+        "targetState":"CutAshTillFull"
+      },
+      {
+        "conditions":["woodcuttingGreaterThanEqual10","freeInvSpace","bankNotContains10000spruce_wood"],
+        "targetState":"CutSpruceTillFull"
+      },
+      {
+        "conditions":["woodcuttingGreaterThanEqual20","freeInvSpace","bankNotContains10000birch_wood"],
+        "targetState":"CutBirchTillFull"
+      },
+      {
+        "conditions":["woodcuttingGreaterThanEqual30","freeInvSpace","bankNotContains50000dead_wood"],
         "targetState":"CutDeadTreeTillFull"
       }
     ]

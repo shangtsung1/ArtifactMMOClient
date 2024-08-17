@@ -1,0 +1,33 @@
+[
+  {
+    "name":"testprint",
+    "type":"action",
+    "pre_transitions":[],
+    "post_transitions":[
+      {
+        "conditions":[],
+        "targetState": "Start"
+      }
+    ],
+    "action":"print",
+    "args": "testprintmessage"
+  },
+  {
+    "name":"EmptyNode",
+    "type":"transition",
+    "pre_transitions":[
+    ],
+    "post_transitions":[
+    ]
+  },
+  {
+    "name":"EmptyAction",
+    "type":"action",
+    "pre_transitions":[
+    ],
+    "post_transitions":[
+    ],
+    "action": "",
+    "args": null
+  }
+]

@@ -375,18 +375,25 @@ public class Client {
     public boolean bankContains(CharacterSchema cs,String item, Integer minAmount){
         if(minAmount == null)minAmount=1;
         try {
-            List<SimpleItemSchema> ites = getBank(cs, item, null, null);
-            int counter = 0;
-            for (SimpleItemSchema sis : ites) {
-                if (sis.getCode().equals(item)) {
-                    counter += sis.getQuantity();
+            MyAccountApi maa = getMyAccountAPI();
+            DataPageSimpleItemSchema dsis = maa.getBankItemsMyBankItemsGet(item,1,50);
+            int totalItems = dsis.getTotal();
+            int pages = (totalItems / 50) + (totalItems % 50 == 0 ? 0 : 1);//account for items not being a multiple of 50.
+            for(int x = 0; x < pages;x++) {
+                if(x!=0){//we already grabbed first page, only grab not first page.
+                    dsis = maa.getBankItemsMyBankItemsGet(item,x+1,50);//pages start at index 1.
+                }
+                List<SimpleItemSchema> ites = dsis.getData();
+                for (SimpleItemSchema sis : ites) {
+                    if (sis.getCode().equals(item)) {
+                        return sis.getQuantity() >= minAmount;
+                    }
                 }
             }
-            return counter > 0 && counter >= minAmount;
         }
         catch(Exception e){
-            return false;
         }
+        return false;
     }
 
     public ActionItemBankResponseSchema withdrawBank(CharacterSchema cs, String item, Integer amount){
@@ -525,10 +532,54 @@ public class Client {
 
     public int countInventory(CharacterSchema character) {
         int count = 0;
+        assert character.getInventory() != null;
         for(InventorySlot is : character.getInventory()){
             if(is.getCode().equals(""))continue;
             count+=is.getQuantity();
         }
         return count;
+    }
+
+    public boolean bankOrInventoryContains(CharacterSchema cs, String item, Integer minAmount) {
+        if(minAmount == null)minAmount=1;
+        int amnt = 0;
+        try {
+            MyAccountApi maa = getMyAccountAPI();
+            DataPageSimpleItemSchema dsis = maa.getBankItemsMyBankItemsGet(item,1,50);
+            int totalItems = dsis.getTotal();
+            int pages = (totalItems / 50) + (totalItems % 50 == 0 ? 0 : 1);//account for items not being a multiple of 50.
+            for(int x = 0; x < pages;x++) {
+                if(x!=0){//we already grabbed first page, only grab not first page.
+                    dsis = maa.getBankItemsMyBankItemsGet(item,x+1,50);//pages start at index 1.
+                }
+                List<SimpleItemSchema> ites = dsis.getData();
+                for (SimpleItemSchema sis : ites) {
+                    if (sis.getCode().equals(item)) {
+                        amnt +=sis.getQuantity();
+                    }
+                }
+            }
+        }
+        catch(Exception e){
+        }
+        for(InventorySlot is : cs.getInventory()){
+            if(is.getCode().equals(""))continue;
+            if (is.getCode().equals(item)) {
+                amnt += is.getQuantity();
+            }
+        }
+
+        return amnt >= minAmount;
+    }
+
+    public boolean invContains(CharacterSchema cs, String item, int quantity) {
+        int amnt = 0;
+        for(InventorySlot is : cs.getInventory()){
+            if(is.getCode().equals(""))continue;
+            if (is.getCode().equals(item)) {
+                amnt += is.getQuantity();
+            }
+        }
+        return amnt >= quantity;
     }
 }

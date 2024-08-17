@@ -9,6 +9,7 @@ public class State {
     private List<Transition> post_transitions;
 
     private String action;//if action != null, do action until transition takes us away
+    private String args;//null if no args
 
     public String getName() {
         return name;
@@ -56,5 +57,13 @@ public class State {
 
     public void setPost_transitions(List<Transition> post_transitions) {
         this.post_transitions = post_transitions;
+    }
+
+    public String getArgs() {
+        return args;
+    }
+
+    public void setArgs(String args) {
+        this.args = args;
     }
 }

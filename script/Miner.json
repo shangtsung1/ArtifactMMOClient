@@ -9,22 +9,345 @@
       }
     ],
     "post_transitions":[
+      //copper
       {
         "conditions":["miningGreaterThanEqual0","freeInvSpace","bankNotContains1000copper_ore"],
         "targetState":"MineCopperTillFull"
       },
       {
-        "conditions":["miningGreaterThanEqual20","freeInvSpace","bankNotContains1000coal"],
-        "targetState":"MineCoalTillFull"
+        "conditions": ["invContains1copper"],
+        "targetState": "bankAll"
       },
+      {
+        "conditions":["miningGreaterThanEqual0","freeInvSpace","bankContains1000copper_ore","bankNotContains1000copper"],
+        "targetState":"SmeltCopperTill1000"
+      },
+      //iron
       {
         "conditions":["miningGreaterThanEqual10","freeInvSpace","bankNotContains1000iron_ore"],
         "targetState":"MineIronTillFull"
       },
       {
+        "conditions": ["invContains1iron"],
+        "targetState": "bankAll"
+      },
+      {
+        "conditions":["miningGreaterThanEqual10","freeInvSpace","bankContains1000iron_ore","bankNotContains1000iron"],
+        "targetState":"SmeltIronTill1000"
+      },
+      //coal
+      {
+        "conditions":["miningGreaterThanEqual20","freeInvSpace","bankNotContains1000coal"],
+        "targetState":"MineCoalTillFull"
+      },
+      {
+        "conditions": ["invContains1steel"],
+        "targetState": "bankAll"
+      },
+      {
+        "conditions":["miningGreaterThanEqual20","freeInvSpace","bankContains1000iron_ore","bankContains1000coal","bankNotContains1000steel"],
+        "targetState":"SmeltSteelTill1000"
+      },
+      //gold
+      {
         "conditions":["miningGreaterThanEqual30","freeInvSpace","bankNotContains1000gold_ore"],
+        "targetState":"MineGoldTillFull"
+      },
+      {
+        "conditions": ["invContains1gold"],
+        "targetState": "bankAll"
+      },
+      {
+        "conditions":["miningGreaterThanEqual30","freeInvSpace","bankContains1000gold_ore","bankNotContains1000gold"],
+        "targetState":"SmeltGoldTill1000"
+      },
+
+      //nothing to do, just mine.
+      {
+        "conditions":["miningGreaterThanEqual0","freeInvSpace","bankNotContains10000copper_ore"],
+        "targetState":"MineCopperTillFull"
+      },
+      {
+        "conditions":["miningGreaterThanEqual20","freeInvSpace","bankNotContains10000coal"],
+        "targetState":"MineCoalTillFull"
+      },
+      {
+        "conditions":["miningGreaterThanEqual10","freeInvSpace","bankNotContains10000iron_ore"],
+        "targetState":"MineIronTillFull"
+      },
+      {
+        "conditions":["miningGreaterThanEqual30","freeInvSpace","bankNotContains50000gold_ore"],
         "targetState":"MineGoldTillFull"
       }
     ]
+  },
+  {
+    "name":"SmeltSteelTill1000",
+    "type":"transition",
+    "pre_transitions":[
+      {
+        "conditions": ["bankContains1000steel"],
+        "targetState": "Miner"
+      },
+      {
+        "conditions": ["bankNotContains2iron_ore","bankNotContains4coal"],
+        "targetState": "Miner"
+      }
+    ],
+    "post_transitions":[
+      {
+        "conditions": ["invContains2iron_ore","invContains4coal"],
+        "targetState": "smeltSteel"
+      },
+      {
+        "conditions": ["invNotContains2iron_ore","invFull"],
+        "targetState": "bankAll"
+      },
+      {
+        "conditions": ["invNotContains4coal","invFull"],
+        "targetState": "bankAll"
+      },
+      {
+        "conditions": ["invNotContains2iron_ore","bankContains2iron_ore"],
+        "targetState": "withdrawMaxSteel1"
+      },
+      {
+        "conditions": ["invNotContains4coal","bankContains4coal"],
+        "targetState": "withdrawMaxSteel2"
+      }
+    ]
+  },
+  {
+    "name":"SmeltIronTill1000",
+    "type":"transition",
+    "pre_transitions":[
+      {
+        "conditions": ["bankContains1000iron"],
+        "targetState": "Miner"
+      },
+      {
+        "conditions": ["bankNotContains6iron_ore"],
+        "targetState": "Miner"
+      }
+    ],
+    "post_transitions":[
+      {
+        "conditions": ["invContains6iron_ore"],
+        "targetState": "smeltIron"
+      },
+      {
+        "conditions": ["invNotContains6iron_ore","invFull"],
+        "targetState": "bankAll"
+      },
+      {
+        "conditions": ["invNotContains6iron_ore","bankContains6iron_ore"],
+        "targetState": "withdrawMaxIron"
+      }
+    ]
+  },
+  {
+    "name":"SmeltGoldTill1000",
+    "type":"transition",
+    "pre_transitions":[
+      {
+        "conditions": ["bankContains1000gold"],
+        "targetState": "Miner"
+      },
+      {
+        "conditions": ["bankNotContains6gold_ore"],
+        "targetState": "Miner"
+      }
+    ],
+    "post_transitions":[
+      {
+        "conditions": ["invContains6gold_ore"],
+        "targetState": "smeltGold"
+      },
+      {
+        "conditions": ["invNotContains6copper_ore","invFull"],
+        "targetState": "bankAll"
+      },
+      {
+        "conditions": ["invNotContains6gold_ore","bankContains6gold_ore"],
+        "targetState": "withdrawMaxGold"
+      }
+    ]
+  },
+  {
+    "name":"SmeltCopperTill1000",
+    "type":"transition",
+    "pre_transitions":[
+      {
+        "conditions": ["bankContains1000copper"],
+        "targetState": "Miner"
+      },
+      {
+        "conditions": ["bankNotContains6copper_ore"],
+        "targetState": "Miner"
+      }
+    ],
+    "post_transitions":[
+      {
+        "conditions": ["invContains6copper_ore"],
+        "targetState": "smeltCopper"
+      },
+      {
+        "conditions": ["invNotContains6copper_ore","invFull"],
+        "targetState": "bankAll"
+      },
+      {
+        "conditions": ["invNotContains6copper_ore","bankContains6copper_ore"],
+        "targetState": "withdrawMaxCopper"
+      }
+    ]
+  },
+
+  {
+    "name":"withdrawMaxSteel1",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["bankNotContains2iron_ore"],
+        "targetState": "Miner"
+      },
+      {
+        "conditions":["invContains2iron_ore"],
+        "targetState": "SmeltSteelTill1000"
+      },
+      {
+        "conditions":["invFull"],
+        "targetState": "SmeltSteelTill1000"
+      }
+    ],
+    "post_transitions":[],
+    "action": "withdraw2iron_ore"
+  },
+  {
+    "name":"withdrawMaxSteel2",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["bankNotContains4coal"],
+        "targetState": "Miner"
+      },
+      {
+        "conditions":["invContains4coal"],
+        "targetState": "SmeltSteelTill1000"
+      },
+      {
+        "conditions":["invFull"],
+        "targetState": "SmeltSteelTill1000"
+      }
+    ],
+    "post_transitions":[],
+    "action": "withdraw4coal"
+  },
+  {
+    "name":"withdrawMaxGold",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["bankNotContains6gold_ore"],
+        "targetState": "Miner"
+      },
+      {
+        "conditions":["invFull"],
+        "targetState": "SmeltGoldTill1000"
+      }
+    ],
+    "post_transitions":[],
+    "action": "withdrawMaxgold_ore"
+  },
+  {
+    "name":"withdrawMaxIron",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["bankNotContains6iron_ore"],
+        "targetState": "Miner"
+      },
+      {
+        "conditions":["invFull"],
+        "targetState": "SmeltIronTill1000"
+      }
+    ],
+    "post_transitions":[],
+    "action": "withdrawMaxiron_ore"
+  },
+  {
+    "name":"withdrawMaxCopper",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["bankNotContains6copper_ore"],
+        "targetState": "Miner"
+      },
+      {
+        "conditions":["invFull"],
+        "targetState": "SmeltCopperTill1000"
+      }
+    ],
+    "post_transitions":[],
+    "action": "withdrawMaxcopper_ore"
+  },
+  {
+    "name":"smeltGold",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions": ["invNotContains6gold_ore"],
+        "targetState": "SmeltGoldTill1000"
+      }
+    ],
+    "post_transitions":[
+    ],
+    "action": "make1gold",
+    "args": "mining"
+  },
+  {
+    "name":"smeltIron",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions": ["invNotContains6iron_ore"],
+        "targetState": "SmeltIronTill1000"
+      }
+    ],
+    "post_transitions":[
+    ],
+    "action": "make1iron",
+    "args": "mining"
+  },
+  {
+    "name":"smeltCopper",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions": ["invNotContains6copper_ore"],
+        "targetState": "SmeltCopperTill1000"
+      }
+    ],
+    "post_transitions":[
+    ],
+    "action": "make1copper",
+    "args": "mining"
+  },
+  {
+    "name":"smeltSteel",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions": ["invNotContains2iron_ore"],
+        "targetState": "SmeltSteelTill1000"
+      },
+      {
+        "conditions": ["invNotContains4coal"],
+        "targetState": "SmeltSteelTill1000"
+      }
+    ],
+    "post_transitions":[
+    ],
+    "action": "make1steel",
+    "args": "mining"
   }
 ]

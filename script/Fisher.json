@@ -14,17 +14,34 @@
         "targetState":"FishGudgeonTillFull"
       },
       {
-        "conditions":["fishingGreaterThanEqual20","freeInvSpace","bankNotContains1000shrimp"],
+        "conditions":["fishingGreaterThanEqual10","freeInvSpace","bankNotContains1000shrimp"],
         "targetState":"FishShrimpTillFull"
       },
       {
-        "conditions":["fishingGreaterThanEqual10","freeInvSpace","bankNotContains1000trout"],
+        "conditions":["fishingGreaterThanEqual20","freeInvSpace","bankNotContains1000trout"],
         "targetState":"FishTroutTillFull"
       },
       {
         "conditions":["fishingGreaterThanEqual30","freeInvSpace","bankNotContains1000bass"],
         "targetState":"FishBassTillFull"
+      },
+      {
+        "conditions":["fishingGreaterThanEqual0","freeInvSpace","bankNotContains10000gudgeon"],
+        "targetState":"FishGudgeonTillFull"
+      },
+      {
+        "conditions":["fishingGreaterThanEqual10","freeInvSpace","bankNotContains10000shrimp"],
+        "targetState":"FishShrimpTillFull"
+      },
+      {
+        "conditions":["fishingGreaterThanEqual20","freeInvSpace","bankNotContains10000trout"],
+        "targetState":"FishTroutTillFull"
+      },
+      {
+        "conditions":["fishingGreaterThanEqual30","freeInvSpace","bankNotContains50000bass"],
+        "targetState":"FishBassTillFull"
       }
+
     ]
   }
 ]

@@ -8,6 +8,11 @@
         "targetState": "bankAll"
       }
     ],
-    "post_transitions":[]
+    "post_transitions":[
+      {
+        "conditions":["combatGreaterThanEqual0","freeInvSpace"],
+        "targetState":"attackChickens"
+      }
+    ]
   }
 ]

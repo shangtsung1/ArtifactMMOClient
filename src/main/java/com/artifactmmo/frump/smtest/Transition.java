@@ -5,6 +5,8 @@ import java.util.List;
 public class Transition {
     private List<String> conditions;
     private String targetState;
+    private String action;
+    private String args;
 
     // Getters and Setters
     public List<String> getConditions() {
@@ -21,5 +23,21 @@ public class Transition {
 
     public void setTargetState(String targetState) {
         this.targetState = targetState;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getArgs() {
+        return args;
+    }
+
+    public void setArgs(String args) {
+        this.args = args;
     }
 }

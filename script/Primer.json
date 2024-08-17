@@ -6,29 +6,78 @@
 
 [
   {
-    "name":"Start",
-    "type":"primer",
-    "pre_transitions":[
+    "name": "Start",
+    "type": "primer",
+    "pre_transitions": [
       {
-        "conditions":["accountNameFrumpy5"],
+        "conditions": ["!equippedWeapon","bankOrInvContains1copper_dagger","combatLessThanEqual9"],
+        "targetState": "EquipCDagger"
+      },
+      {
+        "conditions": ["!equippedWeapon","bankOrInvContains1iron_sword","combatGreaterThanEqual10","combatLessThanEqual19"],
+        "targetState": "EquipISword"
+      }
+    ],
+    "post_transitions": [
+      {
+        "conditions": [
+          "accountNameFrumpy5"
+        ],
         "targetState": "Miner"
       },
       {
-        "conditions":["accountNameFrumpy4"],
+        "conditions": [
+          "accountNameFrumpy4"
+        ],
         "targetState": "Fisher"
       },
       {
-        "conditions":["accountNameFrumpy3"],
+        "conditions": [
+          "accountNameFrumpy3"
+        ],
         "targetState": "Woodcutter"
       },
       {
-        "conditions":["accountNameFrumpy2"],
+        "conditions": [
+          "accountNameFrumpy2"
+        ],
         "targetState": "Crafter"
       },
       {
-        "conditions":["accountNameFrumpy1"],
+        "conditions": [
+          "accountNameFrumpy1"
+        ],
         "targetState": "Fighter"
-      }],
-    "post_transitions":[]
+      }
+    ]
+  },
+
+  {
+    "name":"EquipCDagger",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions": ["invNotContains1copper_dagger"],
+        "action": "withdraw1copper_dagger"
+      }
+    ],
+    "post_transitions":[
+    ],
+    "action": "equipcopper_dagger",
+    "args": "weapon"
+  },
+  {
+    "name":"EquipISword",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions": ["invNotContains1iron_sword"],
+        "action": "withdraw1iron_sword"
+      }
+    ],
+    "post_transitions":[
+    ],
+    "action": "equipiron_sword",
+    "args": "weapon"
   }
 ]

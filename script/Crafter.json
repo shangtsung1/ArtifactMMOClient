@@ -3,11 +3,281 @@
     "name":"Crafter",
     "type":"primer",
     "pre_transitions":[
+      //bank if full
       {
         "conditions":["invFull"],
         "targetState": "bankAll"
+      },
+      //bank if near full
+      {
+        "conditions":["!freeInvSpace"],
+        "targetState": "bankAll"
+      },
+      //equipment
+      //copper dagger
+      {
+        "conditions":["weaponcraftingGreaterThanEqual0","bankOrInvContains5copper_dagger","bankOrInvContains3copper","invNotContains3copper"],
+        "targetState": "withdrawCopper3"
+      },
+      {
+        "conditions":["weaponcraftingGreaterThanEqual0","bankOrInvNotContains5copper_dagger","bankOrInvContains3copper","invContains3copper"],
+        "targetState": "makeCopperDagger"
+      },
+      //copper ring
+      {
+        "conditions":["jewelrycraftingGreaterThanEqual0","bankOrInvContains5copper_ring","bankOrInvContains4copper","invNotContains4copper"],
+        "targetState": "withdrawCopper4"
+      },
+      {
+        "conditions":["jewelrycraftingGreaterThanEqual0","bankOrInvNotContains5copper_ring","bankOrInvContains4copper","invContains4copper"],
+        "targetState": "makeCopperRing"
+      },
+      //copper boots
+      {
+        "conditions":["gearcraftingGreaterThanEqual0","bankOrInvContains5copper_boots","bankOrInvContains3copper","invNotContains3copper"],
+        "targetState": "withdrawCopper3"
+      },
+      {
+        "conditions":["gearcraftingGreaterThanEqual0","bankOrInvNotContains5copper_boots","bankOrInvContains3copper","invContains3copper"],
+        "targetState": "makeCopperBoots"
+      },
+      //copper helmet
+      {
+        "conditions":["gearcraftingGreaterThanEqual0","bankOrInvContains5copper_helmet","bankOrInvContains3copper","invNotContains3copper"],
+        "targetState": "withdrawCopper3"
+      },
+      {
+        "conditions":["gearcraftingGreaterThanEqual0","bankOrInvNotContains5copper_helmet","bankOrInvContains3copper","invContains3copper"],
+        "targetState": "makeCopperHelmet"
+      },
+      //copper legs
+      {
+        "conditions":["gearcraftingGreaterThanEqual5","bankOrInvContains5copper_legs_armor","bankOrInvContains4copper","invNotContains4copper"],
+        "targetState": "withdrawCopper4"
+      },
+      {
+        "conditions":["gearcraftingGreaterThanEqual5","bankOrInvNotContains5copper_legs_armor","bankOrInvContains4copper","invContains4copper"],
+        "targetState": "makeCopperLegs"
+      },
+      //copper body
+      {
+        "conditions":["gearcraftingGreaterThanEqual5","bankOrInvContains5copper_armor","bankOrInvContains5copper","invNotContains5copper"],
+        "targetState": "withdrawCopper5"
+      },
+      {
+        "conditions":["gearcraftingGreaterThanEqual5","bankOrInvNotContains5copper_armor","bankOrInvContains5copper","invContains5copper"],
+        "targetState": "makeCopperArmour"
+      },
+      //iron
+      {
+        "conditions":["weaponcraftingLessThanEqual19","bankOrInvNotContains5iron_sword","bankOrInvContains8iron","invNotContains8iron"],
+        "targetState": "withdrawIron8"
+      },
+      {
+        "conditions":["weaponcraftingLessThanEqual19","bankOrInvNotContains5iron_sword","bankOrInvContains8iron","invContains8iron"],
+        "targetState": "makeIronSword"
+      },
+
+
+      //grind
+      //copper
+      {
+        "conditions":["weaponcraftingLessThanEqual9","bankOrInvContains3copper","invNotContains3copper"],
+        "targetState": "withdrawCopper3"
+      },
+      {
+        "conditions":["weaponcraftingLessThanEqual9","bankOrInvContains3copper","invContains3copper"],
+        "targetState": "makeCopperDagger"
+      },
+      {
+        "conditions":["jewelrycraftingLessThanEqual9","bankOrInvContains4copper","invNotContains4copper"],
+        "targetState": "withdrawCopper4"
+      },
+      {
+        "conditions":["jewelrycraftingLessThanEqual9","bankOrInvContains4copper","invContains4copper"],
+        "targetState": "makeCopperRing"
+      },
+      {
+        "conditions":["gearcraftingLessThanEqual9","bankOrInvContains3copper","invNotContains3copper"],
+        "targetState": "withdrawCopper3"
+      },
+      {
+        "conditions":["gearcraftingLessThanEqual9","bankOrInvContains3copper","invContains3copper"],
+        "targetState": "makeCopperBoots"
+      },
+      //iron.
+      {
+        "conditions":["weaponcraftingLessThanEqual19","bankOrInvContains8iron","invNotContains8iron"],
+        "targetState": "withdrawIron8"
+      },
+      {
+        "conditions":["weaponcraftingLessThanEqual19","bankOrInvContains8iron","invContains8iron"],
+        "targetState": "makeIronSword"
       }
     ],
-    "post_transitions":[]
+    "post_transitions":[
+      {
+        "conditions":[],
+        "targetState": "attackChickens"
+      }
+    ]
+  },
+
+  //withdraw
+  {
+    "name":"withdrawIron8",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["bankNotContains8iron"],
+        "targetState": "Crafter"
+      }
+    ],
+    "post_transitions":[],
+    "action": "withdraw8iron"
+  },
+  {
+    "name":"withdrawCopper3",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["bankNotContains3copper"],
+        "targetState": "Crafter"
+      }
+    ],
+    "post_transitions":[],
+    "action": "withdraw3copper"
+  },
+  {
+    "name":"withdrawCopper4",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["bankNotContains4copper"],
+        "targetState": "Crafter"
+      }
+    ],
+    "post_transitions":[],
+    "action": "withdraw4copper"
+  },
+  {
+    "name":"withdrawCopper5",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["bankNotContains5copper"],
+        "targetState": "Crafter"
+      }
+    ],
+    "post_transitions":[],
+    "action": "withdraw5copper"
+  },
+
+  //make
+  //copper
+  {
+    "name":"makeCopperDagger",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invNotContains3copper"],
+        "targetState": "bankAll"
+      }
+    ],
+    "post_transitions":[],
+    "action": "make1copper_dagger",
+    "args": "weapon"
+  },
+  {
+    "name":"makeCopperRing",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invNotContains4copper"],
+        "targetState": "bankAll"
+      }
+    ],
+    "post_transitions":[],
+    "action": "make1copper_ring",
+    "args": "jewelery"
+  },
+  {
+    "name":"makeCopperBoots",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invNotContains3copper"],
+        "targetState": "bankAll"
+      }
+    ],
+    "post_transitions":[],
+    "action": "make1copper_boots",
+    "args": "gear"
+  },
+  {
+    "name":"makeCopperHelmet",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invNotContains3copper"],
+        "targetState": "bankAll"
+      },
+      {
+        "conditions":["invContains5copper_helmet"],
+        "targetState": "bankAll"
+      }
+    ],
+    "post_transitions":[],
+    "action": "make1copper_helmet",
+    "args": "gear"
+  },
+  {
+    "name":"makeCopperLegs",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invNotContains4copper"],
+        "targetState": "bankAll"
+      },
+      {
+        "conditions":["invContains5copper_legs_armor"],
+        "targetState": "bankAll"
+      }
+    ],
+    "post_transitions":[],
+    "action": "make1copper_legs_armor",
+    "args": "gear"
+  },
+  {
+    "name":"makeCopperArmour",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invNotContains5copper"],
+        "targetState": "bankAll"
+      },
+      {
+        "conditions":["invContains5copper_armor"],
+        "targetState": "bankAll"
+      }
+    ],
+    "post_transitions":[],
+    "action": "make1copper_armor",
+    "args": "gear"
+  },
+
+  //iron
+  {
+    "name":"makeIronSword",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invNotContains8iron"],
+        "targetState": "Crafter"
+      }
+    ],
+    "post_transitions":[],
+    "action": "make1iron_sword",
+    "args": "weapon"
   }
 ]

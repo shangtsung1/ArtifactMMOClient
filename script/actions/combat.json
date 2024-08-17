@@ -1,0 +1,14 @@
+[
+  {
+    "name":"attackChickens",
+    "type":"action",
+    "pre_transitions":[
+      {
+        "conditions":["invFull"],
+        "targetState": "Start"
+      }
+    ],
+    "post_transitions":[],
+    "action":"attackChickens"
+  }
+]

@@ -11,6 +11,7 @@ public class Data {
     public static DestinationSchema LOC_SERPENT = (new DestinationSchema()).x(5).y(4);
     public static DestinationSchema LOC_MUSHMUSH = (new DestinationSchema()).x(5).y(3);
     public static DestinationSchema LOC_OWLBEAR = (new DestinationSchema()).x(10).y(1);
+    public static DestinationSchema LOC_BANDIT_LIZARD = (new DestinationSchema()).x(3).y(4);
 
     public static DestinationSchema LOC_YELLOW_SLIME = (new DestinationSchema()).x(4).y(-1);
     public static DestinationSchema LOC_BLUE_SLIME = (new DestinationSchema()).x(2).y(-1);
